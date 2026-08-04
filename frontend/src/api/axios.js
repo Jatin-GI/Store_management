@@ -1,6 +1,19 @@
 import axios from "axios";
 
-const apiBaseUrl = import.meta.env.VITE_API_URL;
+function normalizeApiBaseUrl(raw) {
+  if (!raw) return null;
+
+  const trimmed = raw.trim();
+
+  // Fix accidental duplicate pastes like:
+  // https://.../api/v1https://.../api/v1...
+  const match = trimmed.match(/^https?:\/\/[^/]+\/api\/v1/);
+  if (match) return match[0];
+
+  return trimmed.replace(/\/+$/, "");
+}
+
+const apiBaseUrl = normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
 
 if (!apiBaseUrl) {
   console.error("VITE_API_URL is missing. Set it before building the frontend.");
