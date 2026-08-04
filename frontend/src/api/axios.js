@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+if (!apiBaseUrl) {
+  console.error("VITE_API_URL is missing. Set it before building the frontend.");
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080/api/v1",
+  baseURL: apiBaseUrl || "http://localhost:8080/api/v1",
 });
 
 api.interceptors.request.use((config) => {
