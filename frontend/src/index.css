@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Palatino Linotype", Palatino, serif;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+  --color-ink: #1c241f;
+  --color-paper: #f7f3ea;
+  --color-muted: #6d766f;
+  --color-line: #d7cebc;
+  --color-green: #2f7d54;
+  --color-green-dark: #245f40;
+}
+
+body {
+  @apply m-0 min-w-80 bg-[#f3efe6] text-ink font-sans antialiased;
+}
